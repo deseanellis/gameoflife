@@ -1,0 +1,138 @@
+@import 'partials/variables';
+@import 'partials/mixins';
+
+@include google-font('Exo');
+
+html {
+  height: 100%;
+  font-size: 12px;
+}
+
+body {
+  min-height: 100%;
+  background: $primary-bg-color;
+  color: $primary-text-color;
+}
+
+.header {
+  display: flex;
+  background: darken($primary-bg-color, 10%);
+  border-top: 2px solid $secondary-bg-color;
+  align-items: center;
+  padding: 0px 20px 0px 20px;
+  div:first-child {
+    flex-grow: 1;
+    font-size: 2.2rem;
+    font-family: 'Exo', sans-serif;
+    text-transform: uppercase;
+    span {
+      color: $secondary-bg-color;
+    }
+  }
+  div:nth-child(2) {
+    span:first-child {
+      font-size: 0.85rem;
+    }
+  }
+  div.social-links {
+    font-size: 2.2rem;
+    a {
+      margin-left: 5px;
+      color: lighten($primary-bg-color, 30%);
+      &:hover{
+        color: $secondary-bg-color;
+      }
+    }
+  }
+}
+
+.content {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .board-wrapper {
+    border: 10px solid darken($primary-bg-color, 10%);
+    border-radius: 20px;
+  }
+  .board {
+    table-layout: fixed;
+    overflow: auto;
+    tr:first-child {
+      td.cell:first-child {
+        border-top-left-radius: 20px;
+      }
+      td.cell:last-child {
+        border-top-right-radius: 20px;
+      }
+    }
+
+    tr:last-child {
+      td.cell:first-child {
+        border-bottom-left-radius: 20px;
+      }
+      td.cell:last-child {
+        border-bottom-right-radius: 20px;
+      }
+    }
+
+
+
+    td.cell {
+      background-color: #333;
+      width: 10px;
+      height: 10px;
+      min-width: 10px;
+      min-height: 10px;
+      border: 1px solid darken($primary-bg-color, 10%);
+      &.alive {
+        background-color: $secondary-bg-color;
+      }
+    }
+  }
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    .btn:not(:first-child):not(:last-child) {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    .btn:first-child{
+      margin-right: 5px;
+    }
+    .generator{
+      margin-left: 10px;
+      color: $primary-text-color;
+      font-size: 1.1rem;
+      span {
+        color: $secondary-bg-color;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+    .btn-custom {
+      color: $primary-text-color;
+      border-radius: 20px;
+      padding: 5px 20px 5px 20px;
+      font-size: 0.95rem;
+      background-color: darken($primary-bg-color, 10%);
+      &:hover {
+        background-color: lighten($primary-bg-color, 10%);
+        color: $primary-text-color;
+      }
+      &.active {
+        color: $secondary-bg-color;
+        font-weight: bold;
+      }
+    }
+    .btn-start {
+      background-color: darken($secondary-bg-color, 5%);
+      &:hover {
+        background-color: darken($secondary-bg-color, 20%);
+        color: $primary-text-color;
+      }
+    }
+  }
+}

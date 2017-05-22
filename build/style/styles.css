@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css?family=Exo");
+html {
+   height: 100%;
+   font-size: 12px;
+}
+
+body {
+   min-height: 100%;
+   background: #23243B;
+   color: #F3F3F3;
+}
+
+.header {
+   display: flex;
+   background: #10101b;
+   border-top: 2px solid #FFB851;
+   align-items: center;
+   padding: 0px 20px 0px 20px;
+}
+
+.header div:first-child {
+   flex-grow: 1;
+   font-size: 2.2rem;
+   font-family: 'Exo', sans-serif;
+   text-transform: uppercase;
+}
+
+.header div:first-child span {
+   color: #FFB851;
+}
+
+.header div:nth-child(2) span:first-child {
+   font-size: 0.85rem;
+}
+
+.header div.social-links {
+   font-size: 2.2rem;
+}
+
+.header div.social-links a {
+   margin-left: 5px;
+   color: #5c5f9b;
+}
+
+.header div.social-links a:hover {
+   color: #FFB851;
+}
+
+.content {
+   margin-top: 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.content .board-wrapper {
+   border: 10px solid #10101b;
+   border-radius: 20px;
+}
+
+.content .board {
+   table-layout: fixed;
+   overflow: auto;
+}
+
+.content .board tr:first-child td.cell:first-child {
+   border-top-left-radius: 20px;
+}
+
+.content .board tr:first-child td.cell:last-child {
+   border-top-right-radius: 20px;
+}
+
+.content .board tr:last-child td.cell:first-child {
+   border-bottom-left-radius: 20px;
+}
+
+.content .board tr:last-child td.cell:last-child {
+   border-bottom-right-radius: 20px;
+}
+
+.content .board td.cell {
+   background-color: #333;
+   width: 10px;
+   height: 10px;
+   min-width: 10px;
+   min-height: 10px;
+   border: 1px solid #10101b;
+}
+
+.content .board td.cell.alive {
+   background-color: #FFB851;
+}
+
+.content .controls {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 20px;
+}
+
+.content .controls .btn:not(:first-child):not(:last-child) {
+   margin-left: 5px;
+   margin-right: 5px;
+}
+
+.content .controls .btn:first-child {
+   margin-right: 5px;
+}
+
+.content .controls .generator {
+   margin-left: 10px;
+   color: #F3F3F3;
+   font-size: 1.1rem;
+}
+
+.content .controls .generator span {
+   color: #FFB851;
+   font-weight: bold;
+   text-decoration: underline;
+}
+
+.content .controls .btn-custom {
+   color: #F3F3F3;
+   border-radius: 20px;
+   padding: 5px 20px 5px 20px;
+   font-size: 0.95rem;
+   background-color: #10101b;
+}
+
+.content .controls .btn-custom:hover {
+   background-color: #36385b;
+   color: #F3F3F3;
+}
+
+.content .controls .btn-custom.active {
+   color: #FFB851;
+   font-weight: bold;
+}
+
+.content .controls .btn-start {
+   background-color: #ffae38;
+}
+
+.content .controls .btn-start:hover {
+   background-color: #ea8b00;
+   color: #F3F3F3;
+}
