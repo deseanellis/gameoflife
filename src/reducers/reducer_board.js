@@ -50,15 +50,16 @@ const BoardReducer = (state=INITIAL_STATE, action) => {
 
 //REDUCER FUNCTIONS
 function countActiveNeighbors(id, cellState, boardSize) {
-  //Get Cells Per Row
-  var cells = boardSize[1];
+  //Get Columns and Rows from Grid
+  var cols = boardSize[1];
+  var rows = boardSize[0];
 
   //Find Row and Column
-  var row = Math.floor(id/cells);
-  var col = id - (row * cells);
+  var row = Math.floor(id/cols);
+  var col = id - (row * cols);
 
   //Array of all neighboring Ids
-  var _ids = getNeighborIds(row, col, cells);
+  var _ids = getNeighborIds(row, col, cols, rows);
 
   //For each one of the neighboring Ids, count the active ones
 
@@ -71,8 +72,9 @@ function countActiveNeighbors(id, cellState, boardSize) {
   return count;
 }
 
-function getNeighborIds(row, col, x){
-  //x is number of cells per row
+function getNeighborIds(row, col, x, y){
+  //x is number of columns
+  //y is the number of rows
 
   /********************************
   Build array of 8 neighbouring IDS
@@ -83,18 +85,18 @@ function getNeighborIds(row, col, x){
   var left = [row, (col - 1 < 0) ? x-1 : col - 1 ];
 
   //Top-Bottom
-  var top = [(row - 1 < 0) ? x-1 : row - 1, col];
-  var bottom = [(row + 1 >= x) ? 0 : row + 1, col];
+  var top = [(row - 1 < 0) ? y-1 : row - 1, col];
+  var bottom = [(row + 1 >= y) ? 0 : row + 1, col];
 
   //Top-Left and Top-Right
-  var topLeft = [(row - 1 < 0) ? x-1 : row - 1, (col - 1 < 0) ? x-1 : col - 1 ];
-  var topRight = [(row - 1 < 0) ? x-1 : row - 1, (col + 1 >= x) ? 0 : col + 1];
+  var topLeft = [(row - 1 < 0) ? y-1 : row - 1, (col - 1 < 0) ? x-1 : col - 1 ];
+  var topRight = [(row - 1 < 0) ? y-1 : row - 1, (col + 1 >= x) ? 0 : col + 1];
 
   //Bottom-Left and Bottom-Right
-  var bottomLeft = [(row + 1 >= x) ? 0 : row + 1, (col - 1 < 0) ? x-1 : col - 1 ];
-  var bottomRight = [(row + 1 >= x) ? 0 : row + 1, (col + 1 >= x) ? 0 : col + 1];
+  var bottomLeft = [(row + 1 >= y) ? 0 : row + 1, (col - 1 < 0) ? x-1 : col - 1 ];
+  var bottomRight = [(row + 1 >= y) ? 0 : row + 1, (col + 1 >= x) ? 0 : col + 1];
 
-  var _ids = convertToId(x, right, left, top, bottom, topLeft, topRight, bottomLeft, bottomRight);
+  var _ids = convertToId(x ,right, left, top, bottom, topLeft, topRight, bottomLeft, bottomRight);
 
   return _ids;
 
@@ -102,6 +104,7 @@ function getNeighborIds(row, col, x){
 
 function convertToId(size, ...args) {
   return args.map((cell) => {
+    //Where size is the number of columns
     return (cell[0] * size) + cell[1];
   });
 }

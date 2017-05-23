@@ -16,8 +16,10 @@ class Controls extends Component {
 
     this.state = {
       intervalId: '',
-      gridSize: 50
+      gridSize: '50x50',
+      sizes: [[50,50], [50,60], [55,65]]
     };
+
   }
 
   componentDidUpdate(){
@@ -28,22 +30,27 @@ class Controls extends Component {
   }
 
   render() {
+    var grid = this.state.gridSize;
+    var gridSize = [];
+    gridSize[0] = parseInt(grid.split('x')[0], 10);
+    gridSize[1] = parseInt(grid.split('x')[1], 10);
     return(
       <div className="controls">
         <button className="btn btn-custom btn-start" onClick={() => this.onStartClick()}><i className="fa fa-play"></i> Start</button>
         <button className="btn btn-custom btn-pause" onClick={() => this.onPauseClick()}><i className="fa fa-pause"></i> Pause</button>
-        <button className="btn btn-custom btn-clear" onClick={() => this.onInitClick("clear", [this.state.gridSize, this.state.gridSize])}><i className="fa fa-times"></i> Clear</button>
-        <button className="btn btn-custom btn-random" onClick={() => this.onInitClick("random", [this.state.gridSize, this.state.gridSize])}><i className="fa fa-random"></i> Random</button>
-        <button className={`btn btn-custom btn-40x40${(this.state.gridSize === 40 ? ' active' : '')}`} onClick={() => this.onInitClick("random", [40,40])}><i className="fa fa-th"></i> 40 x 40</button>
-        <button className={`btn btn-custom btn-50x50${(this.state.gridSize === 50 ? ' active' : '')}`} onClick={() => this.onInitClick("random")}><i className="fa fa-th"></i> 50 x 50</button>
-        <button className={`btn btn-custom btn-55x55${(this.state.gridSize === 55 ? ' active' : '')}`} onClick={() => this.onInitClick("random", [55,55])}><i className="fa fa-th"></i> 55 x 55</button>
+        <button className="btn btn-custom btn-clear" onClick={() => this.onInitClick("clear", gridSize)}><i className="fa fa-times"></i> Clear</button>
+        <button className="btn btn-custom btn-random" onClick={() => this.onInitClick("random", gridSize)}><i className="fa fa-random"></i> Random</button>
+        <button className={`btn btn-custom btn-50x50${(this.state.gridSize === '50x50' ? ' active' : '')}`} onClick={() => this.onInitClick("random")}><i className="fa fa-th"></i> 50 x 50</button>
+        <button className={`btn btn-custom btn-50x60${(this.state.gridSize === '50x60' ? ' active' : '')}`} onClick={() => this.onInitClick("random", [50,60])}><i className="fa fa-th"></i> 50 x 60</button>
+        <button className={`btn btn-custom btn-60x65${(this.state.gridSize === '60x65' ? ' active' : '')}`} onClick={() => this.onInitClick("random", [55,65])}><i className="fa fa-th"></i> 55 x 65</button>
         <Generator />
       </div>
     );
   }
 
+
   onInitClick(mode, size) {
-    var gridSize = (size === undefined ? 50 : size[0])
+    var gridSize = (size === undefined ? '50x50' : size[0] + "x" + size[1])
     clearInterval(this.state.intervalId);
     this.setState({
       gridSize
@@ -56,6 +63,10 @@ class Controls extends Component {
   }
 
   onStartClick() {
+
+    if (this.props.start) {
+      return;
+    }
 
     if (this.props.pause) {
       this.props.PauseBoard(false);
