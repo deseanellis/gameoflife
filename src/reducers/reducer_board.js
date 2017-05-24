@@ -128,18 +128,18 @@ function buildBoard(size, mode, initialiser) {
   return cells;
 }
 
-function getRowsAndCols(BOARD_SIZE) {
+function getRowsAndCols(size) {
   var rowsAndCols = [];
   var rows = [];
   var cols = [];
 
   //Get Rows
-  for(let i = 0; i < BOARD_SIZE[0]; i++) {
+  for(let i = 0; i < size[0]; i++) {
     rows.push(i);
   }
 
   //Get Columns
-  for(let i = 0; i < BOARD_SIZE[1]; i++) {
+  for(let i = 0; i < size[1]; i++) {
     cols.push(i);
   }
 

@@ -42,7 +42,7 @@ class Controls extends Component {
         <button className="btn btn-custom btn-random" onClick={() => this.onInitClick("random", gridSize)}><i className="fa fa-random"></i> Random</button>
         <button className={`btn btn-custom btn-50x50${(this.state.gridSize === '50x50' ? ' active' : '')}`} onClick={() => this.onInitClick("random")}><i className="fa fa-th"></i> 50 x 50</button>
         <button className={`btn btn-custom btn-50x60${(this.state.gridSize === '50x60' ? ' active' : '')}`} onClick={() => this.onInitClick("random", [50,60])}><i className="fa fa-th"></i> 50 x 60</button>
-        <button className={`btn btn-custom btn-60x65${(this.state.gridSize === '60x65' ? ' active' : '')}`} onClick={() => this.onInitClick("random", [55,65])}><i className="fa fa-th"></i> 55 x 65</button>
+        <button className={`btn btn-custom btn-60x65${(this.state.gridSize === '55x65' ? ' active' : '')}`} onClick={() => this.onInitClick("random", [55,65])}><i className="fa fa-th"></i> 55 x 65</button>
         <Generator />
       </div>
     );
